@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RAM Status</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>System RAM Information</h2>
+        <p id="ram-info">Loading...</p>
+    </div>
+
+    <script>
+        fetch('/api/get-ram')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ram-info').innerText = `RAM: ${data.ram_mb} MB`;
+            })
+            .catch(error => {
+                document.getElementById('ram-info').innerText = 'Error loading data';
+            });
+    </script>
+</body>
+</html>
